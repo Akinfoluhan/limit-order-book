@@ -1,18 +1,30 @@
 #include <iostream>
 #include "Order.hpp"
+#include "PriceLevel.hpp"
 
 int main()
 {
-    Order order{
+    Order order1{
         1,
         Side::Buy,
-        100,
+        10000,
         10};
 
-    std::cout << "Order ID: " << order.id << "\n";
-    std::cout << "Side: " << (order.side == Side::Buy ? "Buy" : "Sell") << "\n";
-    std::cout << "Price: " << order.price << "\n";
-    std::cout << "Quantity: " << order.quantity << "\n";
+    Order order2{
+        2,
+        Side::Sell,
+        10000,
+        25};
+
+    PriceLevel level{
+        10000};
+
+    level.addOrder(order1);
+    level.addOrder(order2);
+
+    std::cout << "Price: " << level.price << "\n";
+    std::cout << "Number of Orders: " << level.orders.size() << "\n";
+    std::cout << "Total Quantity: " << level.totalQuantity << "\n";
 
     return 0;
 }
