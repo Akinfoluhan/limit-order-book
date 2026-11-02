@@ -1,6 +1,5 @@
 #include <iostream>
-#include "Order.hpp"
-#include "PriceLevel.hpp"
+
 #include "OrderBook.hpp"
 
 int main()
@@ -8,36 +7,32 @@ int main()
     OrderBook book;
 
     book.addOrder({1,
-                   Side::Buy,
+                   Side::Sell,
                    10000,
-                   10});
+                   5});
 
     book.addOrder({2,
-                   Side::Buy,
+                   Side::Sell,
                    10100,
-                   5});
+                   8});
 
     book.addOrder({3,
                    Side::Sell,
-                   10300,
-                   20});
-
-    book.addOrder({4,
-                   Side::Sell,
                    10200,
-                   15});
+                   10});
 
-    auto bestBid = book.bestBid();
-    auto bestAsk = book.bestAsk();
+    auto trades = book.addOrder({4,
+                                 Side::Buy,
+                                 10200,
+                                 15});
 
-    if (bestBid)
+    for (const Trade &trade : trades)
     {
-        std::cout << "Best Bid: " << *bestBid << std::endl;
-    }
-
-    if (bestAsk)
-    {
-        std::cout << "Best Ask: " << *bestAsk << std::endl;
+        std::cout << "Buy Order: " << trade.buyOrderId
+                  << ", Sell Order: " << trade.sellOrderId
+                  << ", Quantity: " << trade.quantity
+                  << ", Price: " << trade.price
+                  << "\n";
     }
 
     return 0;
