@@ -1,0 +1,28 @@
+# Build outputs
+orderbook
+*.o
+*.out
+*.exe
+
+# Build directories
+build/
+cmake-build-*/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Debug / profiling artifacts
+*.dSYM/
+*.gcda
+*.gcno
+*.profraw
+*.profdata
